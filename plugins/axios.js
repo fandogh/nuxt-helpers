@@ -34,15 +34,32 @@ function wrapPromise(p) {
 
 // Create wrappers
 // https://github.com/mzabriskie/axios#request-method-aliases
-export const $request = opts => wrapPromise(Axios.request(opts));
+export const $request = function (opts) {
+    return wrapPromise(Axios.request(opts));
+};
 
-export const $get = (url, opts) => wrapPromise(Axios.get(url, opts));
-export const $delete = (url, opts) => wrapPromise(Axios.delete(url, opts));
-export const $head = (url, opts) => wrapPromise(Axios.head(url, opts));
+export const $get = function (url, opts) {
+    return wrapPromise(Axios.get(url, opts));
+};
 
-export const $post = (url, data, opts) => wrapPromise(Axios.post(url, data, opts));
-export const $put = (url, data, opts) => wrapPromise(Axios.put(url, data, opts));
-export const $patch = (url, data, opts) => wrapPromise(Axios.patch(url, data, opts));
+export const $delete = function (url, opts) {
+    return wrapPromise(Axios.delete(url, opts));
+};
+
+export const $head = function (url, opts) {
+    return wrapPromise(Axios.head(url, opts));
+};
+
+export const $post = function (url, data, opts) {
+    return wrapPromise(Axios.post(url, data, opts));
+};
+
+export const $put = function (url, data, opts) {
+    return wrapPromise(Axios.put(url, data, opts));
+};
+export const $patch = function (url, data, opts) {
+    return wrapPromise(Axios.patch(url, data, opts));
+};
 
 // ----------------------------------------
 // Vue Plugin
