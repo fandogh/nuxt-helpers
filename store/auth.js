@@ -37,7 +37,7 @@ function AuthStore({default_user} = {}) {
     // ----------------------------------------
     this.mutations = {
 
-        setUser(state, user) {
+        setUser: function (state, user) {
             // Fill user with defaults data
             state.user = Object.assign({}, self.defaultState.user, user);
 
@@ -45,7 +45,7 @@ function AuthStore({default_user} = {}) {
             state.loggedIn = Boolean(user);
         },
 
-        setToken(state, token) {
+        setToken: function (state, token) {
             state.token = token;
 
             // Setup axios
@@ -64,7 +64,7 @@ function AuthStore({default_user} = {}) {
     // ----------------------------------------
     this.actions = {
 
-        loadToken({commit}) {
+        loadToken: function ({commit}) {
             // Try to extract token from cookies
             let cookieStr = inBrowser ? document.cookie : ctx.req.headers.cookie;
             let cookies = Cookie.parse(cookieStr || '') || {};
@@ -73,7 +73,7 @@ function AuthStore({default_user} = {}) {
             commit('setToken', token);
         },
 
-        async fetch({commit, dispatch, state}) {
+        fetch: function ({commit, dispatch, state}) {
             // Load user token
             dispatch('loadToken');
 
@@ -83,21 +83,21 @@ function AuthStore({default_user} = {}) {
             }
 
             // Get user profile
-            try {
-                let {user} = await $get('/auth/user');
+            return $get('/auth/user').then(function ({user}) {
                 commit('setUser', user);
-            } catch (err) {
-                dispatch('logout')
-            }
+            }).catch(() => {
+                return dispatch('logout')
+            });
         },
 
-        async login({commit, dispatch}, fields) {
-            let {id_token} = await $post('/auth/login', fields);
-            commit('setToken', id_token);
-            await dispatch('fetch');
+        login: function ({commit, dispatch}, fields) {
+            return $post('/auth/login', fields).then(function ({id_token}) {
+                commit('setToken', id_token);
+                return dispatch('fetch');
+            });
         },
 
-        async logout({commit}) {
+        logout: function ({commit}) {
             // Unset token
             commit('setToken', null);
 
@@ -105,11 +105,8 @@ function AuthStore({default_user} = {}) {
             commit('setUser', null);
 
             // Server side logout
-            try {
-                await $get('/auth/logout');
-            } catch (err) {
-
-            }
+            return $get('/auth/logout').catch(function () {
+            });
         }
     };
 }
