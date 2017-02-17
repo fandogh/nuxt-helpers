@@ -86,7 +86,7 @@ function AuthStore(opts) {
             // Get user profile
             return $get('/auth/user').then(function (userData) {
                 ctx.commit('setUser', userData.user);
-            }).catch(() => {
+            }).catch(function () {
                 return ctx.dispatch('logout')
             });
         },
