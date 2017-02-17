@@ -97,7 +97,7 @@ Vue.use(VueAxios);
 // ----------------------------------------
 export const setToken = function (token) {
     Object.assign(Axios.defaults.headers.common, {
-        Authorization: token ? `Bearer ${token}` : null
+        Authorization: token ? 'Bearer ' + token : null
     });
 };
 
