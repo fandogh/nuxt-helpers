@@ -87,8 +87,7 @@ function AuthStore({default_user} = {}) {
                 let {user} = await $get('/auth/user');
                 commit('setUser', user);
             } catch (err) {
-                commit('setToken', null);
-                commit('setUser', null);
+                dispatch('logout')
             }
         },
 
