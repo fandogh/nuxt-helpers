@@ -4,7 +4,7 @@ import Vue from 'vue';
 const inBrowser = typeof window !== 'undefined';
 
 // When inBrowser proxy through current url to prevent all problems with CORS and security
-let API_URL = inBrowser ? '' : (process.env.API_URL || 'http://localhost:3000');
+const API_URL = inBrowser ? '' : (process.env.API_URL || 'http://localhost:3000');
 
 Object.assign(Axios.defaults, {
     baseURL: API_URL + (process.env.API_PREFIX || '/api')
