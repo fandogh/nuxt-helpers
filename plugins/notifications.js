@@ -9,7 +9,9 @@ if (process.BROWSER_BUILD) {
     Toast.init({});
 
     // Here we setup messages output to `mini-toastr`
-    const toast = ({title, message, type, timeout, cb}) => Toast[type](message, title, timeout, cb);
+    const toast = function ({title, message, type, timeout, cb}) {
+        return Toast[type](message, title, timeout, cb);
+    };
 
     // Binding for methods .success(), .error() and etc. You can specify and map your own methods here.
     // Required to pipe our output to UI library (mini-toastr in example here)
