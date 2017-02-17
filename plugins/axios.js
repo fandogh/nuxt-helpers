@@ -29,7 +29,9 @@ function onError(e) {
 
 // Wap promise
 function wrapPromise(p) {
-    return p.then(res => res.data || {}).catch(onError);
+    return p.then(function (res) {
+        return res.data || {};
+    }).catch(onError);
 }
 
 // Create wrappers
