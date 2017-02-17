@@ -43,7 +43,7 @@ build: {
     vendor:[
         'nuxt-helpers/plugins/axios',
     ]
-}
+},
 plugins: [
     'node_modules/nuxt-helpers/plugins/axios',    
 ]
@@ -99,7 +99,7 @@ Add this to your `nuxt.config.js`:
     },
     plugins: [
         'node_modules/nuxt-helpers/plugins/bootstrap',    
-    ]
+    ],
     css: [
         path.resolve(__dirname, 'node_modules/bootstrap/dist/css/bootstrap.css'),
     ]
@@ -126,7 +126,7 @@ build: {
     vendor:[
         'nuxt-helpers/plugins/notifications',
     ]
-}
+},
 plugins: [
     'node_modules/nuxt-helpers/plugins/notifications',    
 ]
@@ -183,4 +183,4 @@ export default authStore;
 Any contribution,bug report or component is highly welcomed :)
 
 # License
-[MIT License](https://github.com/fandogh/nuxt-helpers/blob/master/LICENSE) - 2017 - Fandogh
+[MIT License](https://github.com/fandogh/nuxt-helpers/blob/master/LICENSE) / Fandogh@2017
