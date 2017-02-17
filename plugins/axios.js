@@ -67,7 +67,7 @@ export const $patch = function (url, data, opts) {
 // Vue Plugin
 // ----------------------------------------
 const VueAxios = {
-    install(Vue) {
+    install: function (Vue) {
         // Globally register as $http
         Vue.prototype.$http = Axios;
 
