@@ -2,12 +2,12 @@
 [![npm](https://img.shields.io/npm/v/nuxt-helpers.svg)]() 
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
 
-> I have collected a set of common useful vue plugins into this package, which can be used individually.
+> Collection of useful and SSR compatible vue plugins for using with [nuxt.js](https://github.com/nuxt/nuxt.js)
 
 ## Features
-- Fully SSR compatible
-- Tested on designed for using with Nuxt.js
-- Can be used individually so bundle size remains small
+- Fully SSR compatible.
+- Tested and well designed for using with Nuxt.js.
+- Plugins can be used individually so bundle size remains small.
 
 ## Getting started
 
@@ -20,7 +20,7 @@ yarn add nuxt-helpers
 # Table of contents
 - [Axios](#axios)
 - [Bootstrap](#bootstrap)
-- [Notifications(Toasts)](#notifications)
+- [Notifications](#notifications)
 - [Auth Store](#auth-store) 
 
 # Axios
@@ -84,7 +84,7 @@ API_PREFIX           | /api                    | Adds this prefix before all rel
 - More usage examples and bundles (including docker+nginx) comming soon.
 
 # Bootstrap
-With bootstrap-vue you can easily use standard bootstrap 4 components with your app [More info](https://github.com/bootstrap-vue/bootstrap-vue).
+With [bootstrap-vue](https://github.com/bootstrap-vue/bootstrap-vue) you can easily use standard bootstrap 4 components with your app.
 (you need to add bootstrap package in your package.json too)
 
 **Usage**
@@ -107,11 +107,11 @@ Add this to your `nuxt.config.js`:
 ```
 
 ```vue
-    <template>
-        <b-alert show>
-            Hello Bootstrap!
-        </b-alert>
-    </template>
+<template>
+    <b-alert show>
+        Hello Bootstrap!
+    </b-alert>
+</template>
 ```
 
 # Notifications
@@ -180,7 +180,7 @@ export default authStore;
 ```
 
 # Contributions
-Any contribution or new plugin is highly welcomed :)
+Any contribution,bug report or component is highly welcomed :)
 
 # License
-MIT
+[MIT License](https://github.com/fandogh/nuxt-helpers/blob/master/LICENSE) - 2017 - Fandogh
