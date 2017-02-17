@@ -9,8 +9,8 @@ if (process.BROWSER_BUILD) {
     Toast.init({});
 
     // Here we setup messages output to `mini-toastr`
-    const toast = function ({title, message, type, timeout, cb}) {
-        return Toast[type](message, title, timeout, cb);
+    const toast = function (ctx) {
+        return Toast[type](ctx.message, ctx.title, ctx.timeout, ctx.cb);
     };
 
     // Binding for methods .success(), .error() and etc. You can specify and map your own methods here.
