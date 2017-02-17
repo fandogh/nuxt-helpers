@@ -8,16 +8,17 @@ import Cookies from 'js-cookie';
 import {setToken, $get, $post} from '../plugins/axios';
 
 const inBrowser = typeof window !== 'undefined';
-const ctx = global.__VUE_SSR_CONTEXT__;
+const SSR = global.__VUE_SSR_CONTEXT__;
 
-function AuthStore({default_user} = {}) {
+function AuthStore(opts) {
     let self = this;
+    opts = opts || {};
 
     // ----------------------------------------
     // Default State
     // ----------------------------------------
     this.defaultState = {
-        user: Object.assign({roles: [], name: null}, default_user),
+        user: Object.assign({roles: [], name: null}, opts.default_user),
         loggedIn: false,
         token: null
     };
@@ -64,45 +65,45 @@ function AuthStore({default_user} = {}) {
     // ----------------------------------------
     this.actions = {
 
-        loadToken: function ({commit}) {
+        loadToken: function (ctx) {
             // Try to extract token from cookies
-            let cookieStr = inBrowser ? document.cookie : ctx.req.headers.cookie;
+            let cookieStr = inBrowser ? document.cookie : SSR.req.headers.cookie;
             let cookies = Cookie.parse(cookieStr || '') || {};
             let token = cookies.token;
 
-            commit('setToken', token);
+            ctx.commit('setToken', token);
         },
 
-        fetch: function ({commit, dispatch, state}) {
+        fetch: function (ctx) {
             // Load user token
-            dispatch('loadToken');
+            ctx.dispatch('loadToken');
 
             // No token
-            if (!state.token) {
+            if (!ctx.state.token) {
                 return;
             }
 
             // Get user profile
-            return $get('/auth/user').then(function ({user}) {
-                commit('setUser', user);
+            return $get('/auth/user').then(function (userData) {
+                ctx.commit('setUser', userData.user);
             }).catch(() => {
-                return dispatch('logout')
+                return ctx.dispatch('logout')
             });
         },
 
-        login: function ({commit, dispatch}, fields) {
-            return $post('/auth/login', fields).then(function ({id_token}) {
-                commit('setToken', id_token);
-                return dispatch('fetch');
+        login: function (ctx, fields) {
+            return $post('/auth/login', fields).then(function (tokenData) {
+                ctx.commit('setToken', tokenData.id_token);
+                return ctx.dispatch('fetch');
             });
         },
 
-        logout: function ({commit}) {
+        logout: function (ctx) {
             // Unset token
-            commit('setToken', null);
+            ctx.commit('setToken', null);
 
             // Unload user profile
-            commit('setUser', null);
+            ctx.commit('setUser', null);
 
             // Server side logout
             return $get('/auth/logout').catch(function () {
