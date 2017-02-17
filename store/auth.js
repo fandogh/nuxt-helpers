@@ -11,7 +11,7 @@ const inBrowser = typeof window !== 'undefined';
 const SSR = global.__VUE_SSR_CONTEXT__;
 
 function AuthStore(opts) {
-    let self = this;
+    const self = this;
     opts = opts || {};
 
     // ----------------------------------------
@@ -67,9 +67,9 @@ function AuthStore(opts) {
 
         loadToken: function (ctx) {
             // Try to extract token from cookies
-            let cookieStr = inBrowser ? document.cookie : SSR.req.headers.cookie;
-            let cookies = Cookie.parse(cookieStr || '') || {};
-            let token = cookies.token;
+            const cookieStr = inBrowser ? document.cookie : SSR.req.headers.cookie;
+            const cookies = Cookie.parse(cookieStr || '') || {};
+            const token = cookies.token;
 
             ctx.commit('setToken', token);
         },
