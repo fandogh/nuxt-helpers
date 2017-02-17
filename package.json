@@ -1,6 +1,6 @@
 {
   "name": "nuxt-helpers",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Nuxt Helpers",
   "repository": "https://github.com/fandogh/nuxt-helpers",
   "scripts": {
@@ -11,7 +11,7 @@
     "Pooya Parsa <pooya@pi0.ir>"
   ],
   "license": "MIT",
-  "peerdependencies": {
+  "dependencies": {
     "axios": "^0.15.3",
     "bootstrap-vue": "^0.8.0",
     "cookie": "^0.3.1",
@@ -30,6 +30,10 @@
     "space": 4,
     "rules": {
       "camelcase": 0
-    }
+    },
+    "envs": [
+      "browser",
+      "node"
+    ]
   }
 }
