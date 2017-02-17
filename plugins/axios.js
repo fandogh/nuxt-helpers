@@ -16,7 +16,7 @@ function onError(e) {
         return {};
     }
 
-    let response = {};
+    var response = {};
     if (e.response) {
         response = e.response.data;
     }
