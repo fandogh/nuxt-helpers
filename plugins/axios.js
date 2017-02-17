@@ -74,13 +74,13 @@ const VueAxios = {
         // Mixins
         Vue.mixin({
             methods: {
-                $request,
-                $get,
-                $delete,
-                $head,
-                $post,
-                $put,
-                $patch
+                $request: $request,
+                $get: $get,
+                $delete: $delete,
+                $head: $head,
+                $post: $post,
+                $put: $put,
+                $patch: $patch
             }
         });
     }
