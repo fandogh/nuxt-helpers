@@ -30,7 +30,7 @@ So you can use **$get('profile')** instead of `(await Axios.get('http://server/a
 - Uses optionally custom URL when executing requests in server-side.
 - Handles all HTTP exceptions and prevents server side unhandled promise exceptions.
 - Injects `$get`,`$post`,... into vue context instances so requests can be done out-of-the-box.
-- Exposes `set_token` function so we can easily and globally set authentication tokens.
+- Exposes `setToken` function so we can easily and globally set authentication tokens.
 - Returns empty object if request fails.
 - Throws *nuxt-friendly* exceptions if needed.
 
