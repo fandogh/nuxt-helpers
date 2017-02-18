@@ -99,14 +99,16 @@ function AuthStore(opts) {
         },
 
         logout: function (ctx) {
-            // Unset token
-            ctx.commit('setToken', null);
-
             // Unload user profile
             ctx.commit('setUser', null);
 
             // Server side logout
-            return $get('/auth/logout').catch(function () {
+            return $get('/auth/logout').then(function () {
+                // Unset token
+                ctx.commit('setToken', null);
+            }).catch(function () {
+                // Unset token
+                ctx.commit('setToken', null);
             });
         }
     };
