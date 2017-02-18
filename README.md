@@ -172,12 +172,16 @@ More options & customization will be added in the future.
 ```js
 import AuthStore from 'nuxt-helpers/store/auth';
 
-const authStore = new AuthStore({});
+const authStore = new AuthStore({ /*opts*/ });
 
 // Your customizations
 
 export default authStore;
 ```
+
+**Options**
+- **default_user** : Default fields for `state.auth.user`. (overrides using Object.assign when logged-in).
+- **token_cookie** : Token cookie opts. (see [js-cookie docs](https://github.com/js-cookie/js-cookie) for more info)
 
 # Contributions
 Any contribution,bug report or component is highly welcomed :)

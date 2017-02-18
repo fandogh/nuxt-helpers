@@ -54,7 +54,10 @@ function AuthStore(opts) {
 
             // Store token in cookies
             if (inBrowser) {
-                Cookies.set('token', token);
+                if (!token) {
+                    return Cookies.remove('name', opts.token_cookie);
+                }
+                Cookies.set('token', token, opts.token_cookie);
             }
         }
 
