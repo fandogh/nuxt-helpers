@@ -55,7 +55,7 @@ function AuthStore(opts) {
             // Store token in cookies
             if (inBrowser) {
                 if (!token) {
-                    return Cookies.remove('name', opts.token_cookie);
+                    return Cookies.remove('token', opts.token_cookie);
                 }
                 Cookies.set('token', token, opts.token_cookie);
             }
@@ -96,6 +96,10 @@ function AuthStore(opts) {
 
         login: function (ctx, fields) {
             return $post('/auth/login', fields).then(function (tokenData) {
+                // Session tokens
+                if (fields.session_only) {
+                    opts.token_cookie = null;
+                }
                 ctx.commit('setToken', tokenData.id_token);
                 return ctx.dispatch('fetch');
             });
