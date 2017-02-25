@@ -64,8 +64,12 @@ const _modules = {
                 }
 
                 // Smaller SSR bundle size
-                config.plugins.push(new webpack.IgnorePlugin(/\.scss$|\.css$|core-js|regenerator-runtime|babel-runtime|vue-style-loader|css-loader/));
                 config.externals = unique(config.externals.concat(nuxt.build.vendor));
+
+                // Don't load stylesheets inside ssr bundle
+                ['scss', 'css'].forEach(function (ext) {
+                    config.module.rules[0].query.loaders[ext] = 'ignore-loader';
+                });
 
                 // nuxt-helpers it self is not external (it should not be shared across sessions)
                 var index = config.externals.indexOf('nuxt-helpers');

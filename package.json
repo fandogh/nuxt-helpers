@@ -16,13 +16,14 @@
     "axios": "^0.15.3",
     "bootstrap-vue": "^0.8.3",
     "cookie": "^0.3.1",
+    "ignore-loader": "^0.1.2",
     "js-cookie": "^2.1.3",
     "lodash": "^4.17.4",
     "mini-toastr": "^0.3.10",
     "nuxt": "latest",
     "toastr": "^2.1.2",
-    "vue-notifications": "^0.7.6",
-    "vue": "^2.1.10"
+    "vue": "^2.1.10",
+    "vue-notifications": "^0.7.6"
   },
   "devDependencies": {
     "xo": "^0.17.1"
