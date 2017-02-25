@@ -24,19 +24,22 @@ Change your `nuxt.config.js`:
 ```js
 const NuxtHelpers = require('nuxt-helpers');
 
-module.exports = NuxtHelpers(['axios', 'bootstrap', 'notifications', 'auth'], {
+module.exports = NuxtHelpers([/* packages to be installed */], {
    
     // Your own nuxt config
    
 }
 ```
-You can install any module by just adding it to first argument's array :)
+You can install any module by just adding it to first argument. You can also pass '*' as first argument to enable all modules.
 
-# Table of contents
-- [Axios](#axios)
-- [Bootstrap](#bootstrap)
-- [Notifications](#notifications)
-- [Auth Store](#auth-store) 
+## Available modules
+- [axios](#axios)
+- [bootstrap](#bootstrap)
+- [notifications](#notifications)
+- [auth](#auth-store)
+- meta
+- dev
+- optimize
 
 # Axios
 This plugin is a wrapper around [axios](https://github.com/mzabriskie/axios). It tries to resolve and make easier lot's of ajax tasks specially with SSR.
