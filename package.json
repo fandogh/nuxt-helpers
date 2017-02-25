@@ -1,6 +1,6 @@
 {
   "name": "nuxt-helpers",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "Nuxt Helpers",
   "repository": "https://github.com/fandogh/nuxt-helpers",
   "main": "install.js",
@@ -20,10 +20,11 @@
     "js-cookie": "^2.1.3",
     "lodash": "^4.17.4",
     "mini-toastr": "^0.3.10",
-    "nuxt": "latest",
     "toastr": "^2.1.2",
-    "vue": "^2.1.10",
     "vue-notifications": "^0.7.6"
+  },
+  "peerDependencies": {
+    "nuxt": "0.9.9"
   },
   "devDependencies": {
     "xo": "^0.17.1"
