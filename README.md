@@ -8,14 +8,29 @@
 - Fully SSR compatible.
 - Tested and well designed for using with Nuxt.js.
 - Plugins can be used individually so bundle size remains small.
+- Easy nuxt installation
 
 ## Getting started
 
+Install nuxt-helpers package:
 ```bash
 npm install nuxt-helpers
 # OR
 yarn add nuxt-helpers
 ```
+
+Change your `nuxt.config.js`:
+
+```js
+const NuxtHelpers = require('nuxt-helpers');
+
+module.exports = NuxtHelpers(['axios', 'bootstrap', 'notifications', 'auth'], {
+   
+    // Your own nuxt config
+   
+}
+```
+You can install any module by just adding it to first argument's array :)
 
 # Table of contents
 - [Axios](#axios)
@@ -36,19 +51,7 @@ So you can use **$get('profile')** instead of `(await Axios.get('http://server/a
 
 **Usage**
 
-Add this to your `nuxt.config.js`:
-```js
-{
-build: {
-    vendor:[
-        'nuxt-helpers/plugins/axios',
-    ]
-},
-plugins: [
-    'node_modules/nuxt-helpers/plugins/axios',    
-]
-}
-```
+Install 'axios' plugin, then:
 
 ```js
 import {$get} from 'nuxt-helpers/plugins/axios';
@@ -89,22 +92,7 @@ With [bootstrap-vue](https://github.com/bootstrap-vue/bootstrap-vue) you can eas
 
 **Usage**
 
-Add this to your `nuxt.config.js`:
-```js
-{
-    build: {
-        vendor:[
-            'nuxt-helpers/plugins/bootstrap',
-        ]
-    },
-    plugins: [
-        'node_modules/nuxt-helpers/plugins/bootstrap',    
-    ],
-    css: [
-        path.resolve(__dirname, 'node_modules/bootstrap/dist/css/bootstrap.css'),
-    ]
-}
-```
+Install 'bootstrap' plugin, then:
 
 ```vue
 <template>
@@ -120,17 +108,7 @@ Easy toasts for your app powered by [vue-notifications](https://github.com/se-pa
 
 **Usage**
 
-Add this to your `nuxt.config.js`:
-```js
-build: {
-    vendor:[
-        'nuxt-helpers/plugins/notifications',
-    ]
-},
-plugins: [
-    'node_modules/nuxt-helpers/plugins/notifications',    
-]
-```
+Install 'notifications' plugin, then:
 
 Then you can define notification in your routes or components:
 
@@ -166,6 +144,8 @@ Please note that this store is written to be used with standard [bak](https://gi
 More options & customization will be added in the future.
 
 **Usage**
+
+Fist install 'auth' plugin, then:
 
 `store/auth.js`:
 
