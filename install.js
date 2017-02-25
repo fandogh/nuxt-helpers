@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const unique = require('./helpers').unique;
+const _ = require('lodash');
 
 const optimize = require('./plugins/optimize');
 const dev = require('./plugins/dev');
@@ -87,12 +87,12 @@ function _install(module_name, nuxt) {
     }
 
     if (module.vendor) {
-        nuxt.build.vendor = unique(nuxt.build.vendor.concat(module.vendor));
+        nuxt.build.vendor = _.uniq(nuxt.build.vendor.concat(module.vendor));
     }
 
     if (module.plugin) {
         nuxt.plugins.push(module.plugin);
-        nuxt.plugins = unique(nuxt.plugins);
+        nuxt.plugins = _.uniq(nuxt.plugins);
     }
 
     if (module.extend) {
