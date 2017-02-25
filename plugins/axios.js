@@ -6,7 +6,8 @@ const inBrowser = typeof window !== 'undefined';
 // When inBrowser proxy through current url to prevent all problems with CORS and security
 const API_URL = inBrowser ? '' : (process.env.API_URL || 'http://localhost:3000');
 
-Object.assign(Axios.defaults, {
+// Create new axios instance
+const axios = Axios.create({
     baseURL: API_URL + (process.env.API_PREFIX || '/api')
 });
 
@@ -37,30 +38,30 @@ function wrapPromise(p) {
 // Create wrappers
 // https://github.com/mzabriskie/axios#request-method-aliases
 export const $request = function (opts) {
-    return wrapPromise(Axios.request(opts));
+    return wrapPromise(axios.request(opts));
 };
 
 export const $get = function (url, opts) {
-    return wrapPromise(Axios.get(url, opts));
+    return wrapPromise(axios.get(url, opts));
 };
 
 export const $delete = function (url, opts) {
-    return wrapPromise(Axios.delete(url, opts));
+    return wrapPromise(axios.delete(url, opts));
 };
 
 export const $head = function (url, opts) {
-    return wrapPromise(Axios.head(url, opts));
+    return wrapPromise(axios.head(url, opts));
 };
 
 export const $post = function (url, data, opts) {
-    return wrapPromise(Axios.post(url, data, opts));
+    return wrapPromise(axios.post(url, data, opts));
 };
 
 export const $put = function (url, data, opts) {
-    return wrapPromise(Axios.put(url, data, opts));
+    return wrapPromise(axios.put(url, data, opts));
 };
 export const $patch = function (url, data, opts) {
-    return wrapPromise(Axios.patch(url, data, opts));
+    return wrapPromise(axios.patch(url, data, opts));
 };
 
 // ----------------------------------------
@@ -69,7 +70,7 @@ export const $patch = function (url, data, opts) {
 const VueAxios = {
     install: function (Vue) {
         // Globally register as $http
-        Vue.prototype.$http = Axios;
+        Vue.prototype.$http = axios;
 
         // Mixins
         Vue.mixin({
@@ -96,8 +97,5 @@ Vue.use(VueAxios);
 // setToken helper
 // ----------------------------------------
 export const setToken = function (token) {
-    Object.assign(Axios.defaults.headers.common, {
-        Authorization: token ? 'Bearer ' + token : null
-    });
+    axios.defaults.headers.common['Authorization'] = token ? 'Bearer ' + token : null
 };
-
