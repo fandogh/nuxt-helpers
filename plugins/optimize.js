@@ -1,8 +1,4 @@
-const unique = require('../helpers').unique;
-
-// Prevent Nuxt.js bug which shares client & ssr rules
-var r0 = null;
-var r1 = null;
+const _ = require('lodash');
 
 function optimize(nuxt) {
 
@@ -19,46 +15,42 @@ function optimize(nuxt) {
 
     nuxt.build.extend = function (config, ctx) {
 
+        // Client Bundle
         if (ctx.isClient) {
             // Legacy (IE) Browsers support
             config.entry.vendor.push('babel-polyfill');
-            if (r1) {
-                config.module.rules[0].query.loaders = JSON.parse(r0);
-                config.module.rules[1].query = JSON.parse(r1);
-            }
-        } else if (ctx.isServer) {
-            if (!r1) {
-                r0 = JSON.stringify(config.module.rules[0].query.loaders);
-                r1 = JSON.stringify(config.module.rules[1].query);
-            }
-            // Smaller SSR bundle size
-            config.externals = unique(config.externals.concat(nuxt.build.vendor));
+            return;
+        }
 
-            // Don't load stylesheets inside ssr bundle
-            ['scss', 'css'].forEach(function (ext) {
-                config.module.rules[0].query.loaders[ext] = 'ignore-loader';
-            });
+        // Smaller SSR bundle size
+        config.externals = _.uniq(config.externals.concat(nuxt.build.vendor));
 
-            // Modernize SSR bundle with less transforms
-            const babel_query = {
-                plugins: [
-                    'transform-es2015-spread',
-                    'transform-object-rest-spread'
-                ]
-            };
+        // Don't load stylesheets inside ssr bundle
+        ['scss', 'css'].forEach(function (ext) {
+            config.module.rules[0].query.loaders[ext] = 'ignore-loader';
+        });
 
-            // ...VUE
-            config.module.rules[0].query.loaders.js = 'babel-loader?' + JSON.stringify(babel_query);
+        // Modernize SSR bundle with less transforms
+        const babel_query = {
+            plugins: [
+                'transform-es2015-spread',
+                'transform-object-rest-spread'
+            ]
+        };
 
-            // ...JS
-            config.module.rules[1].query.plugins = babel_query.plugins;
-            config.module.rules[1].query.presets = [];
+        // ...VUE
+        config.module.rules[0] = _.cloneDeep(config.module.rules[0]);
+        config.module.rules[0].query.loaders.js = 'babel-loader?' + JSON.stringify(babel_query);
 
-            // nuxt-helpers itself is not external (it should not be shared across sessions)
-            var index = config.externals.indexOf('nuxt-helpers');
-            if (index >= 0) {
-                config.externals.splice(index, 1);
-            }
+        // ...JS
+        config.module.rules[1] = _.cloneDeep(config.module.rules[1]);
+        config.module.rules[1].query.plugins = babel_query.plugins;
+        config.module.rules[1].query.presets = [];
+
+        // nuxt-helpers itself is not external (it should not be shared across sessions)
+        var index = config.externals.indexOf('nuxt-helpers');
+        if (index >= 0) {
+            config.externals.splice(index, 1);
         }
 
         // Call original extend
