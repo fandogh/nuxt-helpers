@@ -25,7 +25,7 @@ acorn-jsx@^3.0.0:
   dependencies:
     acorn "^3.0.4"
 
-acorn@4.0.4:
+acorn@4.0.4, acorn@^4.0.4:
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-4.0.4.tgz#17a8d6a7a6c4ef538b814ec9abac2779293bf30a"
 
@@ -33,7 +33,7 @@ acorn@^3.0.4:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-3.3.0.tgz#45e37fb39e8da3f25baee3ff5369e2bb5f22017a"
 
-acorn@^4.0.11, acorn@^4.0.3, acorn@^4.0.4:
+acorn@^4.0.11, acorn@^4.0.3:
   version "4.0.11"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-4.0.11.tgz#edcda3bd937e7556410d42ed5860f67399c794c0"
 
@@ -826,9 +826,9 @@ boom@2.x.x:
   dependencies:
     hoek "2.x.x"
 
-bootstrap-vue@bootstrap-vue/bootstrap-vue:
-  version "0.7.1"
-  resolved "https://codeload.github.com/bootstrap-vue/bootstrap-vue/tar.gz/44281878deb16996225567a637b344a26571a070"
+bootstrap-vue@^0.8.3:
+  version "0.8.3"
+  resolved "https://registry.yarnpkg.com/bootstrap-vue/-/bootstrap-vue-0.8.3.tgz#28f6b7df247e1569efb0cf25b9400d97384811ba"
   dependencies:
     bootstrap "^4.0.0-"
     tether latest
@@ -3181,7 +3181,7 @@ number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
 
-nuxt@^0.9.9:
+nuxt@latest:
   version "0.9.9"
   resolved "https://registry.yarnpkg.com/nuxt/-/nuxt-0.9.9.tgz#4e9ae8c2f6acc6a832e02b8f565f55ccf9d867b8"
   dependencies:
