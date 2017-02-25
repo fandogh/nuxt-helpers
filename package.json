@@ -21,10 +21,8 @@
     "lodash": "^4.17.4",
     "mini-toastr": "^0.3.10",
     "toastr": "^2.1.2",
-    "vue-notifications": "^0.7.6"
-  },
-  "peerDependencies": {
-    "nuxt": "0.9.9"
+    "vue-notifications": "^0.7.6",
+    "nuxt": "^0.9.9"
   },
   "devDependencies": {
     "xo": "^0.17.1"
