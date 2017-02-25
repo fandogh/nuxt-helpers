@@ -14,7 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.15.3",
-    "bootstrap-vue": "0.9.0",
+    "bootstrap-vue": "^0.9.1",
     "cookie": "^0.3.1",
     "ignore-loader": "^0.1.2",
     "js-cookie": "^2.1.3",
