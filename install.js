@@ -1,5 +1,10 @@
 const path = require('path');
 const webpack = require('webpack');
+const unique = require('./helpers').unique;
+
+const optimize = require('./plugins/optimize');
+const dev = require('./plugins/dev');
+const meta = require('./plugins/meta');
 
 const _modules = {
 
@@ -14,22 +19,11 @@ const _modules = {
     },
 
     meta: {
-        extend: function (nuxt) {
-            if (!nuxt.head.meta) {
-                nuxt.head.meta = [];
-            }
-
-            nuxt.head.meta.push({charset: 'utf-8'});
-            nuxt.head.meta.push({name: 'viewport', content: 'width=device-width, initial-scale=1'});
-        }
+        extend: meta
     },
 
     dev: {
-        extend: function (nuxt) {
-            if (nuxt.dev !== true && nuxt.dev !== false) {
-                nuxt.dev = process.env.NODE_ENV !== 'production';
-            }
-        }
+        extend: dev
     },
 
     notifications: {
@@ -39,59 +33,14 @@ const _modules = {
 
     auth: {
         vendor: ['cookie', 'js-cookie'],
-        plugin: path.resolve(__dirname, 'store/auth'),
+        plugin: path.resolve(__dirname, 'plugins/auth'),
     },
 
     optimize: {
-        extend: function (nuxt) {
-
-            // Better filenames
-            if (!nuxt.build.filenames) {
-                nuxt.build.filenames = {
-                    css: 'app.css',
-                    vendor: 'vendor.js',
-                    app: 'app.js'
-                };
-            }
-
-            const _extend = nuxt.build.extend;
-
-            nuxt.build.extend = function (config, ctx) {
-                if (!ctx.isServer) {
-                    // Legacy (IE) Browsers support
-                    config.entry.vendor.push('babel-polyfill');
-                    return;
-                }
-
-                // Smaller SSR bundle size
-                config.externals = unique(config.externals.concat(nuxt.build.vendor));
-
-                // Don't load stylesheets inside ssr bundle
-                ['scss', 'css'].forEach(function (ext) {
-                    config.module.rules[0].query.loaders[ext] = 'ignore-loader';
-                });
-
-                // nuxt-helpers it self is not external (it should not be shared across sessions)
-                var index = config.externals.indexOf('nuxt-helpers');
-                if (index >= 0) {
-                    config.externals.splice(index, 1);
-                }
-
-                // Call original extend
-                if (_extend) {
-                    _extend(config, ctx);
-                }
-            }
-        }
+        extend: optimize
     }
 
 };
-
-function unique(arr) {
-    return arr.filter(function (value, index) {
-        return arr.indexOf(value) === index;
-    });
-}
 
 function install(modules, nuxt) {
 

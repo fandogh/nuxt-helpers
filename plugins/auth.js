@@ -5,7 +5,7 @@
 
 import Cookie from 'cookie';
 import Cookies from 'js-cookie';
-import {setToken, $get, $post} from '../plugins/axios';
+import {setToken, $get, $post} from './axios';
 
 const inBrowser = typeof window !== 'undefined';
 const SSR = global.__VUE_SSR_CONTEXT__;
