@@ -1,6 +1,6 @@
 {
   "name": "nuxt-helpers",
-  "version": "0.5.5",
+  "version": "0.5.6",
   "description": "Nuxt Helpers",
   "repository": "https://github.com/fandogh/nuxt-helpers",
   "main": "install.js",
@@ -15,7 +15,7 @@
   "dependencies": {
     "axios": "^0.15.3",
     "babel-polyfill": "^6.23.0",
-    "bootstrap-vue": "^0.9.4",
+    "bootstrap-vue": "^0.9.5",
     "cookie": "^0.3.1",
     "ignore-loader": "^0.1.2",
     "js-cookie": "^2.1.3",
