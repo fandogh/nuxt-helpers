@@ -18,6 +18,11 @@ const _modules = {
         plugin: path.resolve(__dirname, 'plugins/bootstrap'),
     },
 
+    font-awesome: {
+        vendor: ['font-awesome-vue'],
+        plugin: path.resolve(__dirname, 'plugins/font-awesome'),
+    },
+
     meta: {
         extend: meta
     },
