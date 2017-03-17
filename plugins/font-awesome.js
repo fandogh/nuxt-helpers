@@ -1,3 +1,5 @@
+const path = require('path');
+
 export const extend = function (config) {
 
   var fa = 'node_modules/font-awesome/css/font-awesome.css';
