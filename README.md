@@ -1,5 +1,5 @@
 # Nuxt Helpers
-[![npm](https://img.shields.io/npm/v/nuxt-helpers.svg)]() 
+[![npm](https://img.shields.io/npm/v/nuxt-helpers.svg)]()
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
 
 > Collection of useful and SSR compatible vue plugins for using with [nuxt.js](https://github.com/nuxt/nuxt.js)
@@ -25,9 +25,9 @@ Change your `nuxt.config.js`:
 const NuxtHelpers = require('nuxt-helpers');
 
 module.exports = NuxtHelpers([/* packages to be installed */], {
-   
+
     // Your own nuxt config
-   
+
 }
 ```
 You can install any module by just adding it to first argument. You can also pass '*' as first argument to enable all modules.
@@ -40,11 +40,12 @@ You can install any module by just adding it to first argument. You can also pas
 - meta
 - dev
 - optimize
+- font-awesome
 
 # Axios
 This plugin is a wrapper around [axios](https://github.com/mzabriskie/axios). It tries to resolve and make easier lot's of ajax tasks specially with SSR.
 So you can use **$get('profile')** instead of `(await Axios.get('http://server/api/profile')).data`.
- 
+
 - Uses optionally custom URL when executing requests in server-side.
 - Handles all HTTP exceptions and prevents server side unhandled promise exceptions.
 - Injects `$get`,`$post`,... into vue context instances so requests can be done out-of-the-box.
@@ -143,7 +144,7 @@ export default {
 
 # Auth Store
 Forget about writing boring auth store for your next nuxt project!
-Please note that this store is written to be used with standard [bak](https://github.com/fandogh/bak) routes. 
+Please note that this store is written to be used with standard [bak](https://github.com/fandogh/bak) routes.
 More options & customization will be added in the future.
 
 **Usage**
@@ -165,6 +166,10 @@ export default authStore;
 **Options**
 - **default_user** : Default fields for `state.auth.user`. (overrides using Object.assign when logged-in).
 - **token_cookie** : Token cookie opts. (see [js-cookie docs](https://github.com/js-cookie/js-cookie) for more info)
+
+# font-awesome
+Leverage [Font Awesome](http://fontawesome.io/) the iconic font and CSS toolkit
+
 
 # Contributions
 Any contribution,bug report or component is highly welcomed :)
