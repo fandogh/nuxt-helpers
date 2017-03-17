@@ -4,6 +4,8 @@
 
 > Collection of useful and SSR compatible vue plugins for using with [nuxt.js](https://github.com/nuxt/nuxt.js)
 
+**BREAKING CHANGES: If you are migrating from <5.x versions, please see [migration guide](#migration_guide)** 
+
 ## Features
 - Fully SSR compatible.
 - Tested and well designed for using with Nuxt.js.
@@ -58,7 +60,7 @@ So you can use **$get('profile')** instead of `(await Axios.get('http://server/a
 Install 'axios' plugin, then:
 
 ```js
-import {$get} from 'nuxt-helpers/plugins/axios';
+import {$get} from 'nuxt-helpers/lib/axios';
 
 async data() {
     let {profile} = await $get('profile');
@@ -170,9 +172,35 @@ export default authStore;
 # font-awesome
 Leverage [Font Awesome](http://fontawesome.io/) the iconic font and CSS toolkit
 
+# Migration guide
+If you are migrating from <5.x versions:
+
+- Globally replace `nuxt-helpers/store/auth` to `nuxt-helpers/lib/auth/store`
+- Globally replace `nuxt-helpers/plugins/axios` to `nuxt-helpers/lib/axios`
+- '*' as first argument is deprecated, you must manually specify plugins. To keep legacy helpers this can be used:
+```js
+module.exports = NuxtHelpers([
+    'auth',
+    'axios',
+    'bootstrap',
+    'dev',
+    'meta',
+    'notifications',
+    'optimize'
+], {
+  
+    // ...
+  
+})
+```
 
 # Contributions
 Any contribution,bug report or component is highly welcomed :)
+
+**Contributors**
+
+- [Pooya Parsa](https://github.com/pi0)
+- [Isi Robayna](https://github.com/irobayna)
 
 # License
 [MIT License](https://github.com/fandogh/nuxt-helpers/blob/master/LICENSE) / Fandogh@2017

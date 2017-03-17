@@ -1,64 +1,13 @@
 const path = require('path');
-const webpack = require('webpack');
 const _ = require('lodash');
 
-const optimize = require('./plugins/optimize');
-const dev = require('./plugins/dev');
-const meta = require('./plugins/meta');
-
-const _modules = {
-
-    axios: {
-        vendor: ['axios'],
-        plugin: path.resolve(__dirname, 'plugins/axios'),
-    },
-
-    bootstrap: {
-        vendor: ['bootstrap-vue'],
-        plugin: path.resolve(__dirname, 'plugins/bootstrap'),
-    },
-
-    font-awesome: {
-        vendor: ['font-awesome-vue'],
-        plugin: path.resolve(__dirname, 'plugins/font-awesome'),
-    },
-
-    meta: {
-        extend: meta
-    },
-
-    dev: {
-        extend: dev
-    },
-
-    notifications: {
-        vendor: ['vue-notifications', 'mini-toastr'],
-        plugin: path.resolve(__dirname, 'plugins/notifications'),
-    },
-
-    auth: {
-        vendor: ['cookie', 'js-cookie'],
-        plugin: path.resolve(__dirname, 'plugins/auth'),
-    },
-
-    optimize: {
-        extend: optimize
-    }
-
-};
-
-function install(modules, nuxt) {
-
+function wrap(helpers, nuxt) {
     if (!nuxt) {
         return;
     }
 
-    if (modules === '*') {
-        modules = Object.keys(_modules);
-    }
-
-    if (!Array.isArray(modules)) {
-        modules = [modules];
+    if (!Array.isArray(helpers)) {
+        helpers = [helpers];
     }
 
     if (!nuxt.build) {
@@ -69,6 +18,10 @@ function install(modules, nuxt) {
         nuxt.build.vendor = [];
     }
 
+    if (!nuxt.css) {
+        nuxt.css = [];
+    }
+
     if (!nuxt.plugins) {
         nuxt.plugins = [];
     }
@@ -77,32 +30,41 @@ function install(modules, nuxt) {
         nuxt.head = {};
     }
 
-    modules.forEach(function (m) {
-        _install(m, nuxt);
+    helpers.forEach(function (m) {
+        install(m, nuxt);
     });
 
     return nuxt;
 }
 
-function _install(module_name, nuxt) {
-    const module = _modules[module_name];
+function install(helper_name, nuxt) {
+    const module_path = path.resolve(__dirname, 'lib', helper_name, '_helper.js');
+    var helper;
 
-    if (!module) {
-        console.warn('[Nuxt-Helpers] Module ' + module_name + ' not defined!');
+    try {
+        /* eslint-disable import/no-dynamic-require */
+        helper = require(module_path);
+    } catch (e) {
+        console.error(e);
     }
 
-    if (module.vendor) {
-        nuxt.build.vendor = _.uniq(nuxt.build.vendor.concat(module.vendor));
+    if (!helper) {
+        console.warn('[Nuxt Helpers] Invalid Helper', helper_name);
+        return;
     }
 
-    if (module.plugin) {
-        nuxt.plugins.push(module.plugin);
+    if (helper.vendor) {
+        nuxt.build.vendor = _.uniq(nuxt.build.vendor.concat(helper.vendor));
+    }
+
+    if (helper.plugin) {
+        nuxt.plugins.push(helper.plugin);
         nuxt.plugins = _.uniq(nuxt.plugins);
     }
 
-    if (module.extend) {
-        module.extend(nuxt);
+    if (helper.extend) {
+        helper.extend(nuxt);
     }
 }
 
-module.exports = install;
+module.exports = wrap;
