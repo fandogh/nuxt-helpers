@@ -4,7 +4,7 @@
 
 > Collection of useful and SSR compatible vue plugins for using with [nuxt.js](https://github.com/nuxt/nuxt.js)
 
-**BREAKING CHANGES: If you are migrating from <0.5.x versions, please see [migration guide](#migration_guide)** 
+**BREAKING CHANGES: If you are migrating from <0.5.x versions, please see [migration guide](#migration-guide)** 
 
 ## Features
 - Fully SSR compatible.
@@ -43,7 +43,7 @@ module.exports = NuxtHelpers([/* packages to be installed */], {
 - dev
 - optimize
 
-# Axios
+### Axios
 This plugin is a wrapper around [axios](https://github.com/mzabriskie/axios). It tries to resolve and make easier lot's of ajax tasks specially with SSR.
 So you can use **$get('profile')** instead of `(await Axios.get('http://server/api/profile')).data`.
 
@@ -90,7 +90,7 @@ API_PREFIX           | /api                    | Adds this prefix before all rel
 
 - Also see [hapi-nuxt](https://github.com/fandogh/hapi-nuxt) which is compatible with with plugin.
 
-# Bootstrap
+### Bootstrap
 With [bootstrap-vue](https://github.com/bootstrap-vue/bootstrap-vue) you can easily use standard bootstrap 4 components with your app.
 (you need to add bootstrap package in your package.json too)
 
@@ -106,7 +106,7 @@ With [bootstrap-vue](https://github.com/bootstrap-vue/bootstrap-vue) you can eas
 </template>
 ```
 
-# Notifications
+### Notifications
 Easy toasts for your app powered by [vue-notifications](https://github.com/se-panfilov/vue-notifications) and
 [mini-toastr](https://github.com/se-panfilov/mini-toastr).
 
@@ -142,7 +142,7 @@ export default {
 }
 ```
 
-# Auth Store
+### Auth Store
 Forget about writing boring auth store for your next nuxt project!
 Please note that this store is written to be used with standard [bak](https://github.com/fandogh/bak) routes.
 More options & customization will be added in the future.
@@ -167,10 +167,13 @@ export default authStore;
 - **default_user** : Default fields for `state.auth.user`. (overrides using Object.assign when logged-in).
 - **token_cookie** : Token cookie opts. (see [js-cookie docs](https://github.com/js-cookie/js-cookie) for more info)
 
-# font-awesome
+### Font Awesome
 Leverage [Font Awesome](http://fontawesome.io/) the iconic font and CSS toolkit
 
-# Migration guide
+💡 Add `font-awesome` helper
+
+
+## Migration guide
 If you are migrating from < 0.5.x versions:
 
 - Globally replace `nuxt-helpers/store/auth` to `nuxt-helpers/lib/auth/store`
