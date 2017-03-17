@@ -4,7 +4,7 @@
 
 > Collection of useful and SSR compatible vue plugins for using with [nuxt.js](https://github.com/nuxt/nuxt.js)
 
-**BREAKING CHANGES: If you are migrating from <5.x versions, please see [migration guide](#migration_guide)** 
+**BREAKING CHANGES: If you are migrating from <0.5.x versions, please see [migration guide](#migration_guide)** 
 
 ## Features
 - Fully SSR compatible.
@@ -32,17 +32,16 @@ module.exports = NuxtHelpers([/* packages to be installed */], {
 
 }
 ```
-You can install any module by just adding it to first argument. You can also pass '*' as first argument to enable all modules.
 
 ## Available modules
 - [axios](#axios)
 - [bootstrap](#bootstrap)
 - [notifications](#notifications)
 - [auth](#auth-store)
+- [font-awesome](#font-awesome)
 - meta
 - dev
 - optimize
-- font-awesome
 
 # Axios
 This plugin is a wrapper around [axios](https://github.com/mzabriskie/axios). It tries to resolve and make easier lot's of ajax tasks specially with SSR.
@@ -57,7 +56,7 @@ So you can use **$get('profile')** instead of `(await Axios.get('http://server/a
 
 **Usage**
 
-Install 'axios' plugin, then:
+💡 Add `axios` helper
 
 ```js
 import {$get} from 'nuxt-helpers/lib/axios';
@@ -72,7 +71,7 @@ Or In any other function: (This does not needs importing axios plugin)
 
 ```js
 mounted() {
-    let {profile} = await this.$get('this');
+    let {profile} = await this.$get('profile');
     return {profile}
 }
 ```
@@ -90,7 +89,6 @@ API_PREFIX           | /api                    | Adds this prefix before all rel
 **Notes**
 
 - Also see [hapi-nuxt](https://github.com/fandogh/hapi-nuxt) which is compatible with with plugin.
-- More usage examples and bundles (including docker+nginx) comming soon.
 
 # Bootstrap
 With [bootstrap-vue](https://github.com/bootstrap-vue/bootstrap-vue) you can easily use standard bootstrap 4 components with your app.
@@ -98,7 +96,7 @@ With [bootstrap-vue](https://github.com/bootstrap-vue/bootstrap-vue) you can eas
 
 **Usage**
 
-Install 'bootstrap' plugin, then:
+💡 Add `bootstrap` helper
 
 ```vue
 <template>
@@ -114,7 +112,7 @@ Easy toasts for your app powered by [vue-notifications](https://github.com/se-pa
 
 **Usage**
 
-Install 'notifications' plugin, then:
+💡 Add `notifications` helper
 
 Then you can define notification in your routes or components:
 
@@ -151,12 +149,12 @@ More options & customization will be added in the future.
 
 **Usage**
 
-Fist install 'auth' plugin, then:
-
-`store/auth.js`:
+💡 Add `auth` helper
 
 ```js
-import AuthStore from 'nuxt-helpers/store/auth';
+// store/auth.js
+
+import AuthStore from 'nuxt-helpers/lib/auth/store';
 
 const authStore = new AuthStore({ /*opts*/ });
 
@@ -173,12 +171,13 @@ export default authStore;
 Leverage [Font Awesome](http://fontawesome.io/) the iconic font and CSS toolkit
 
 # Migration guide
-If you are migrating from <5.x versions:
+If you are migrating from < 0.5.x versions:
 
 - Globally replace `nuxt-helpers/store/auth` to `nuxt-helpers/lib/auth/store`
 - Globally replace `nuxt-helpers/plugins/axios` to `nuxt-helpers/lib/axios`
-- '*' as first argument is deprecated, you must manually specify plugins. To keep legacy helpers this can be used:
+- `*` as first argument is deprecated, you must manually specify plugins. To keep legacy helpers this can be used:
 ```js
+// nuxt.config.js
 module.exports = NuxtHelpers([
     'auth',
     'axios',
@@ -203,4 +202,4 @@ Any contribution,bug report or component is highly welcomed :)
 - [Isi Robayna](https://github.com/irobayna)
 
 # License
-[MIT License](https://github.com/fandogh/nuxt-helpers/blob/master/LICENSE) / Fandogh@2017
+[MIT License](https://github.com/fandogh/nuxt-helpers/blob/master/LICENSE) - Fandogh 2017
