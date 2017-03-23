@@ -1,6 +1,6 @@
 {
   "name": "nuxt-helpers",
-  "version": "0.7.0",
+  "version": "0.7.0-testing",
   "description": "Nuxt Helpers",
   "repository": "https://github.com/fandogh/nuxt-helpers",
   "main": "lib/install.js",
@@ -14,8 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "chalk": "^1.1.3",
-    "lodash": "^4.17.4",
-    "nuxt": "^0.9.9"
+    "lodash": "^4.17.4"
   },
   "devDependencies": {
     "xo": "^0.18.0"
