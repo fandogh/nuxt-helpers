@@ -26,11 +26,20 @@ Change your `nuxt.config.js`:
 ```js
 const NuxtHelpers = require('nuxt-helpers');
 
-module.exports = NuxtHelpers([/* packages to be installed */], {
+module.exports = NuxtHelpers([
+    //'auth',
+    //'axios',
+    //'bootstrap',
+    //'dev',
+    //'meta',
+    //'notifications',
+    //'optimize',
+    //'font-awesome'
+], {
 
-    // Your own nuxt config
+    // Your nuxt config
 
-}
+})
 ```
 
 ## Available modules
@@ -54,9 +63,10 @@ So you can use **$get('profile')** instead of `(await Axios.get('http://server/a
 - Returns empty object if request fails.
 - Throws *nuxt-friendly* exceptions if needed.
 
-**Usage**
+**💡 Usage**
 
-💡 Add `axios` helper
+- Add `axios` to project `package.json`
+- Add `axios` helper
 
 ```js
 import {$get} from 'nuxt-helpers/lib/axios';
@@ -94,9 +104,10 @@ API_PREFIX           | /api                    | Adds this prefix before all rel
 With [bootstrap-vue](https://github.com/bootstrap-vue/bootstrap-vue) you can easily use standard bootstrap 4 components with your app.
 (you need to add bootstrap package in your package.json too)
 
-**Usage**
+**💡 Usage**
 
-💡 Add `bootstrap` helper
+- Add `bootstrap-vue` to `package.json`
+- Add `bootstrap` helper
 
 ```vue
 <template>
@@ -110,9 +121,10 @@ With [bootstrap-vue](https://github.com/bootstrap-vue/bootstrap-vue) you can eas
 Easy toasts for your app powered by [vue-notifications](https://github.com/se-panfilov/vue-notifications) and
 [mini-toastr](https://github.com/se-panfilov/mini-toastr).
 
-**Usage**
+**💡 Usage**
 
-💡 Add `notifications` helper
+- Add `vue-notifications` & `mini-toastr` to package.json
+- Add `notifications` helper
 
 Then you can define notification in your routes or components:
 
@@ -147,9 +159,10 @@ Forget about writing boring auth store for your next nuxt project!
 Please note that this store is written to be used with standard [bak](https://github.com/fandogh/bak) routes.
 More options & customization will be added in the future.
 
-**Usage**
+**💡 Usage**
 
-💡 Add `auth` helper
+- Add `cookie` & `js-cookie` to package.json
+- Add `auth` helper
 
 ```js
 // store/auth.js
@@ -170,31 +183,18 @@ export default authStore;
 ### Font Awesome
 Leverage [Font Awesome](http://fontawesome.io/) the iconic font and CSS toolkit
 
-💡 Add `font-awesome` helper
+**💡 Usage**
 
+- Add `font-awesome` to package.json
+- Add `font-awesome` helper
 
 ## Migration guide
-If you are migrating from < 0.5.x versions:
+If you are migrating from older versions:
 
+- Plugin vendors are not dependencies anymore. You will see warning about not installed packages.
 - Globally replace `nuxt-helpers/store/auth` to `nuxt-helpers/lib/auth/store`
 - Globally replace `nuxt-helpers/plugins/axios` to `nuxt-helpers/lib/axios`
-- `*` as first argument is deprecated, you must manually specify plugins. To keep legacy helpers this can be used:
-```js
-// nuxt.config.js
-module.exports = NuxtHelpers([
-    'auth',
-    'axios',
-    'bootstrap',
-    'dev',
-    'meta',
-    'notifications',
-    'optimize'
-], {
-  
-    // ...
-  
-})
-```
+- `*` as first argument is deprecated, you must manually specify plugins.
 
 # Contributions
 Any contribution,bug report or component is highly welcomed :)
