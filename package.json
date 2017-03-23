@@ -24,6 +24,7 @@
     "space": 4,
     "rules": {
       "camelcase": 1,
+      "import/no-unresolved": 0,
       "import/no-extraneous-dependencies": 0
     },
     "envs": [
