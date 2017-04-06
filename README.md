@@ -174,7 +174,12 @@ export default authStore;
 - **token_cookie** : Token cookie opts. (see [js-cookie docs](https://github.com/js-cookie/js-cookie) for more info)
 
 ### Font Awesome
-Leverage [Font Awesome](http://fontawesome.io/) the iconic font and CSS toolkit
+Leverage [Font Awesome](http://fontawesome.io/) the iconic font and CSS toolkit.
+
+**💡 Usage**
+
+- Add `font-awesome` to package.json
+- Add `font-awesome` helper
 
 ### Optimize
 **This helper is not stable yet.**
@@ -183,12 +188,6 @@ Leverage [Font Awesome](http://fontawesome.io/) the iconic font and CSS toolkit
  
 - Add `cssnano` to package.json
 - Add `optimize` helper
-
-
-**💡 Usage**
-
-- Add `font-awesome` to package.json
-- Add `font-awesome` helper
 
 ## Migration guide
 
