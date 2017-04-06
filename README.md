@@ -4,7 +4,7 @@
 
 > Collection of useful and SSR compatible vue plugins for using with [nuxt.js](https://github.com/nuxt/nuxt.js)
 
-**BREAKING CHANGES: If you are migrating from <0.5.x versions, please see [migration guide](#migration-guide)** 
+**BREAKING CHANGES: If you are migrating from <= 0.7.0 version, please see [migration guide](#migration-guide)** 
 
 ## Features
 - Fully SSR compatible.
@@ -14,14 +14,17 @@
 
 ## Getting started
 
-Install nuxt-helpers package:
+1- Install nuxt-helpers package:
 ```bash
-npm install nuxt-helpers
-# OR
+# YARN
 yarn add nuxt-helpers
+
+# NPM
+npm install nuxt-helpers
+
 ```
 
-Change your `nuxt.config.js`:
+2- Change your `nuxt.config.js`:
 
 ```js
 const NuxtHelpers = require('nuxt-helpers');
@@ -32,7 +35,7 @@ module.exports = NuxtHelpers([
     //'bootstrap',
     //'dev',
     //'meta',
-    //'notifications',
+    //'toast',
     //'optimize',
     //'font-awesome'
 ], {
@@ -42,10 +45,12 @@ module.exports = NuxtHelpers([
 })
 ```
 
+**3- Add `.nuxt-helpers` to your `.gitignore` file**
+
 ## Available modules
 - [axios](#axios)
 - [bootstrap](#bootstrap)
-- [notifications](#notifications)
+- [toast](#toast)
 - [auth](#auth-store)
 - [font-awesome](#font-awesome)
 - meta
@@ -69,7 +74,7 @@ So you can use **$get('profile')** instead of `(await Axios.get('http://server/a
 - Add `axios` helper
 
 ```js
-import {$get} from 'nuxt-helpers/lib/axios';
+import {$get} from '~nuxt-helpers/axios';
 
 async data() {
     let {profile} = await $get('profile');
@@ -107,7 +112,7 @@ With [bootstrap-vue](https://github.com/bootstrap-vue/bootstrap-vue) you can eas
 **💡 Usage**
 
 - Add `bootstrap-vue` to `package.json`
-- Add `bootstrap` helper
+- Add `bootstrap-vue` helper
 
 ```vue
 <template>
@@ -117,14 +122,13 @@ With [bootstrap-vue](https://github.com/bootstrap-vue/bootstrap-vue) you can eas
 </template>
 ```
 
-### Notifications
-Easy toasts for your app powered by [vue-notifications](https://github.com/se-panfilov/vue-notifications) and
-[mini-toastr](https://github.com/se-panfilov/mini-toastr).
+### Toast
+Easy toasts for your app using [mini-toastr](https://github.com/se-panfilov/mini-toastr).
 
 **💡 Usage**
 
-- Add `vue-notifications` & `mini-toastr` to package.json
-- Add `notifications` helper
+- Add `mini-toastr` to package.json
+- Add `toast` helper
 
 Then you can define notification in your routes or components:
 
@@ -134,23 +138,12 @@ export default {
      async login() {
          try {
              await this.$post('auth/login');
-             this.success();
+             this.$success('Welcome :)');
          } catch(e){
-             this.error();
+             this.$error('Error while authenticating');
          }
      }  
-   },
-   notifications: {
-            success: {
-                title: 'Welcome :)',
-                type: 'success'
-            },
-            error: {
-                title: 'Error while authenticating',
-                type: 'error'
-            }
-    },
-
+   }
 }
 ```
 
@@ -167,7 +160,7 @@ More options & customization will be added in the future.
 ```js
 // store/auth.js
 
-import AuthStore from 'nuxt-helpers/lib/auth/store';
+import AuthStore from '~/.nuxt-helpers/auth';
 
 const authStore = new AuthStore({ /*opts*/ });
 
@@ -183,18 +176,27 @@ export default authStore;
 ### Font Awesome
 Leverage [Font Awesome](http://fontawesome.io/) the iconic font and CSS toolkit
 
+### Optimize
+**This helper is not stable yet.**
+
+**💡 Usage**
+ 
+- Add `cssnano` to package.json
+- Add `optimize` helper
+
+
 **💡 Usage**
 
 - Add `font-awesome` to package.json
 - Add `font-awesome` helper
 
 ## Migration guide
-If you are migrating from older versions:
 
-- Plugin vendors are not dependencies anymore. You will see warning about not installed packages.
-- Globally replace `nuxt-helpers/store/auth` to `nuxt-helpers/lib/auth/store`
-- Globally replace `nuxt-helpers/plugins/axios` to `nuxt-helpers/lib/axios`
-- `*` as first argument is deprecated, you must manually specify plugins.
+- Plugins are now copied to project root to prevent babel problems.
+- Add `.nuxt-helpers` to `.gitignore`. 
+- See new `axios` and `auth` usage description.
+- `bootstrap` plugin is renamed to `bootstrap-vue`.
+- `notifications` plugin is renamed to `toast` and usage simplified.
 
 # Contributions
 Any contribution,bug report or component is highly welcomed :)
