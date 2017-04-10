@@ -74,7 +74,7 @@ So you can use **$get('profile')** instead of `(await Axios.get('http://server/a
 - Add `axios` helper
 
 ```js
-import {$get} from '~nuxt-helpers/axios';
+import {$get} from '~/nuxt-helpers/axios';
 
 async data() {
     let {profile} = await $get('profile');
