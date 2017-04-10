@@ -97,13 +97,9 @@ Customization can be done using shared environment variables.
 
 Environment variable | Default                 | Description
 ---------------------|-------------------------|--------------------------------------------
-API_URL   (SSR)      | http://localhost:3000   | Base url for ajax requests in server-side
-API_URL   (browser)  | [nothing]               | Base url for ajax requests in client (cannot be changed, use API_PREFIX)
+API_URL              | http://localhost:3000   | Base url for ajax requests in server-side
+API_URL_BROWSER      | [API_URL]               | Base url for ajax requests in client-side
 API_PREFIX           | /api                    | Adds this prefix before all relative urls
-
-**Notes**
-
-- Also see [hapi-nuxt](https://github.com/fandogh/hapi-nuxt) which is compatible with with plugin.
 
 ### Bootstrap
 With [bootstrap-vue](https://github.com/bootstrap-vue/bootstrap-vue) you can easily use standard bootstrap 4 components with your app.
@@ -148,9 +144,6 @@ export default {
 ```
 
 ### Auth Store
-Forget about writing boring auth store for your next nuxt project!
-Please note that this store is written to be used with standard [bak](https://github.com/fandogh/bak) routes.
-More options & customization will be added in the future.
 
 **💡 Usage**
 
