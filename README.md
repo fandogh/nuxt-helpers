@@ -37,7 +37,9 @@ module.exports = NuxtHelpers([
     //'meta',
     //'toast',
     //'optimize',
-    //'font-awesome'
+    //'font-awesome',
+    //'moment',
+    //'offline',
 ], {
 
     // Your nuxt config
@@ -56,6 +58,7 @@ module.exports = NuxtHelpers([
 - meta
 - dev
 - optimize
+- offline
 
 ### Axios
 This plugin is a wrapper around [axios](https://github.com/mzabriskie/axios). It tries to resolve and make easier lot's of ajax tasks specially with SSR.
