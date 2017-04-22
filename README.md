@@ -4,8 +4,6 @@
 
 > Collection of useful and SSR compatible vue plugins for using with [nuxt.js](https://github.com/nuxt/nuxt.js)
 
-**BREAKING CHANGES: If you are migrating from <= 0.7.0 version, please see [migration guide](#migration-guide)** 
-
 ## Features
 - Fully SSR compatible.
 - Tested and well designed for using with Nuxt.js.
@@ -57,10 +55,11 @@ module.exports = NuxtHelpers([
 - [font-awesome](#font-awesome)
 - meta
 - dev
-- optimize
-- offline
+- [optimize](#optimize)
+- [offline](#offline)
+- [manifest](#manifest)
 
-### Axios
+## Axios
 This plugin is a wrapper around [axios](https://github.com/mzabriskie/axios). It tries to resolve and make easier lot's of ajax tasks specially with SSR.
 So you can use **$get('profile')** instead of `(await Axios.get('http://server/api/profile')).data`.
 
@@ -71,7 +70,7 @@ So you can use **$get('profile')** instead of `(await Axios.get('http://server/a
 - Returns empty object if request fails.
 - Throws *nuxt-friendly* exceptions if needed.
 
-**💡 Usage**
+####💡 Usage
 
 - Add `axios` to project `package.json`
 - Add `axios` helper
@@ -104,11 +103,11 @@ API_URL              | http://localhost:3000   | Base url for ajax requests in s
 API_URL_BROWSER      | [API_URL]               | Base url for ajax requests in client-side
 API_PREFIX           | /api                    | Adds this prefix before all relative urls
 
-### Bootstrap
+## Bootstrap
 With [bootstrap-vue](https://github.com/bootstrap-vue/bootstrap-vue) you can easily use standard bootstrap 4 components with your app.
 (you need to add bootstrap package in your package.json too)
 
-**💡 Usage**
+####💡 Usage
 
 - Add `bootstrap-vue` to `package.json`
 - Add `bootstrap-vue` helper
@@ -121,10 +120,10 @@ With [bootstrap-vue](https://github.com/bootstrap-vue/bootstrap-vue) you can eas
 </template>
 ```
 
-### Toast
+## Toast
 Easy toasts for your app using [mini-toastr](https://github.com/se-panfilov/mini-toastr).
 
-**💡 Usage**
+####💡 Usage
 
 - Add `mini-toastr` to package.json
 - Add `toast` helper
@@ -146,9 +145,9 @@ export default {
 }
 ```
 
-### Auth Store
+## Auth Store
 
-**💡 Usage**
+####💡 Usage
 
 - Add `cookie` & `js-cookie` to package.json
 - Add `auth` helper
@@ -169,23 +168,65 @@ export default authStore;
 - **default_user** : Default fields for `state.auth.user`. (overrides using Object.assign when logged-in).
 - **token_cookie** : Token cookie opts. (see [js-cookie docs](https://github.com/js-cookie/js-cookie) for more info)
 
-### Font Awesome
+## Font Awesome
 Leverage [Font Awesome](http://fontawesome.io/) the iconic font and CSS toolkit.
 
-**💡 Usage**
+####💡 Usage
 
 - Add `font-awesome` to package.json
 - Add `font-awesome` helper
 
-### Optimize
+## Optimize
 **This helper is not stable yet.**
 
-**💡 Usage**
+- Normalizes names to `app` and `vendor` and sets assets public path to `/assets`.
+- Adds [cssnano](https://cssnano.co) to postcss.
+- (TODO) Modernize SSR bundle with less transforms.
+
+####💡 Usage
  
 - Add `cssnano` to package.json
 - Add `optimize` helper
 
+## Offline
+**This helper is not stable yet.**
+
+**This helper only works in non dev mode**
+
+- Registers service worker
+- Scopes `cacheName` to allow having multi apps in same domain.
+
+####💡 Usage
+ 
+- Add `offline` helper
+
+## Manifest
+**This helper is not stable yet.**
+
+Adds [Web App Manifest](https://developer.mozilla.org/en-US/docs/Web/Manifest) with no pain.
+
+- Creates `static/manifest.json`
+- Adds `<link rel=manifest>` to pages if not exits.
+- Adds `<link rel=favicon>` to pages if not exits.
+- Adds `<meta name=description>` to pages if not exits.
+- Adds `<meta name=theme-color>` to pages if not exits.
+- Adds title to pages if not exits.
+
+####💡 Usage
+ 
+- Add `manifest` helper
+- Add `static/favicon.png` for your app icon.
+- Add additional options to `nuxt.manifest` to override defaults:
+
+```js
+manifest:{
+    name:'My Awesome App',
+    dir:'rtl'
+}
+```
+
 ## Migration guide
+If you are migrating from <= 0.7.0 version:
 
 - Plugins are now copied to project root to prevent babel problems.
 - Add `.nuxt-helpers` to `.gitignore`. 
