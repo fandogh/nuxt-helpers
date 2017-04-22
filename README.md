@@ -70,7 +70,7 @@ So you can use **$get('profile')** instead of `(await Axios.get('http://server/a
 - Returns empty object if request fails.
 - Throws *nuxt-friendly* exceptions if needed.
 
-####💡 Usage
+#### 💡 Usage
 
 - Add `axios` to project `package.json`
 - Add `axios` helper
@@ -107,7 +107,7 @@ API_PREFIX           | /api                    | Adds this prefix before all rel
 With [bootstrap-vue](https://github.com/bootstrap-vue/bootstrap-vue) you can easily use standard bootstrap 4 components with your app.
 (you need to add bootstrap package in your package.json too)
 
-####💡 Usage
+#### 💡 Usage
 
 - Add `bootstrap-vue` to `package.json`
 - Add `bootstrap-vue` helper
@@ -123,7 +123,7 @@ With [bootstrap-vue](https://github.com/bootstrap-vue/bootstrap-vue) you can eas
 ## Toast
 Easy toasts for your app using [mini-toastr](https://github.com/se-panfilov/mini-toastr).
 
-####💡 Usage
+#### 💡 Usage
 
 - Add `mini-toastr` to package.json
 - Add `toast` helper
@@ -147,7 +147,7 @@ export default {
 
 ## Auth Store
 
-####💡 Usage
+#### 💡 Usage
 
 - Add `cookie` & `js-cookie` to package.json
 - Add `auth` helper
@@ -171,7 +171,7 @@ export default authStore;
 ## Font Awesome
 Leverage [Font Awesome](http://fontawesome.io/) the iconic font and CSS toolkit.
 
-####💡 Usage
+#### 💡 Usage
 
 - Add `font-awesome` to package.json
 - Add `font-awesome` helper
@@ -183,7 +183,7 @@ Leverage [Font Awesome](http://fontawesome.io/) the iconic font and CSS toolkit.
 - Adds [cssnano](https://cssnano.co) to postcss.
 - (TODO) Modernize SSR bundle with less transforms.
 
-####💡 Usage
+#### 💡 Usage
  
 - Add `cssnano` to package.json
 - Add `optimize` helper
@@ -196,7 +196,7 @@ Leverage [Font Awesome](http://fontawesome.io/) the iconic font and CSS toolkit.
 - Registers service worker
 - Scopes `cacheName` to allow having multi apps in same domain.
 
-####💡 Usage
+#### 💡 Usage
  
 - Add `offline` helper
 
@@ -212,7 +212,7 @@ Adds [Web App Manifest](https://developer.mozilla.org/en-US/docs/Web/Manifest) w
 - Adds `<meta name=theme-color>` to pages if not exits.
 - Adds title to pages if not exits.
 
-####💡 Usage
+#### 💡 Usage
  
 - Add `manifest` helper
 - Add `static/favicon.png` for your app icon.
