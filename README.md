@@ -215,7 +215,7 @@ Adds [Web App Manifest](https://developer.mozilla.org/en-US/docs/Web/Manifest) w
 #### 💡 Usage
  
 - Add `manifest` helper
-- Add `static/favicon.png` for your app icon.
+- Add `static/icon.png` for your app icon.
 - Add additional options to `nuxt.manifest` to override defaults:
 
 ```js
