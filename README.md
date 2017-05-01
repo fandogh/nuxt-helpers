@@ -38,6 +38,8 @@ module.exports = NuxtHelpers([
     //'font-awesome',
     //'moment',
     //'offline',
+    // 'manifest',
+    //'vendor',
 ], {
 
     // Your nuxt config
@@ -58,6 +60,7 @@ module.exports = NuxtHelpers([
 - [optimize](#optimize)
 - [offline](#offline)
 - [manifest](#manifest)
+- [vendor](#vendor)
 
 ## Axios
 This plugin is a wrapper around [axios](https://github.com/mzabriskie/axios). It tries to resolve and make easier lot's of ajax tasks specially with SSR.
@@ -222,6 +225,21 @@ Adds [Web App Manifest](https://developer.mozilla.org/en-US/docs/Web/Manifest) w
 manifest:{
     name:'My Awesome App',
     dir:'rtl'
+}
+```
+
+## Vendor
+This awesome little helpers creates *junction symlinks* from `nodule_modules` into `static/vendor`
+so you can directly serve node modules inside web. Useful for runtime dependencies.
+  
+#### 💡 Usage
+ 
+- Add `vendor` helper
+- Add `/static/vendor` to `.gitignore`
+- Define your dependencies in `nuxt.config.json` inside `vendor` section:
+```js
+{
+    vendor: ['ckeditor']
 }
 ```
 
