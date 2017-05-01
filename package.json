@@ -1,6 +1,6 @@
 {
   "name": "nuxt-helpers",
-  "version": "0.9.2",
+  "version": "0.10.0",
   "description": "Nuxt Helpers",
   "repository": "https://github.com/fandogh/nuxt-helpers",
   "main": "lib/install.js",
