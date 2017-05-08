@@ -22,7 +22,7 @@ You can use `this` context to access and hack nuxt core app. (webpack config fil
 // A module can be asynchronous
 // Useful for fetching some API or others (Mongo connection...)
 module.exports = async function (nuxt) {
-	const render = this.render.bind(nuxt)
+	const render = this.render.bind(this)
 	this.render = (req, res)=> {
 		if (pages[req.url]) {
 			return res.send(pages[req.url])
@@ -42,11 +42,10 @@ In order to use meta you can attach it to your module exports:
 
 ```js
 module.exports.meta = {
-  
     // Vendor packages will be added to vendor.js bundle file
     vendor: [],
 
-    // This module has a plugin (can be a function which (nuxt) => Boolean blueprint
+    // Boolean indicating this module has a plugin (or a function (nuxt) => Boolean) 
     plugin: true,
     
     // Just copy plugin without adding to plugins option, see auth module
