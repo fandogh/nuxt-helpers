@@ -4,6 +4,8 @@
 
 > Collection of useful and SSR compatible vue plugins for using with [nuxt.js](https://github.com/nuxt/nuxt.js)
 
+## Nuxt Modules is Coming Soon! See [master](https://github.com/fandogh/nuxt-modules/tree/master) branch.
+
 ## Features
 - Fully SSR compatible.
 - Tested and well designed for using with Nuxt.js.
