@@ -41,7 +41,10 @@ module.exports = NuxtModules([
 - [vendor](modules/vendor)
 
 
+# Modules Development Guide [WIP]
+Nuxt has powerful SDK which allows you write your own modules and share them with community.
 
+See [MODULES](MODULES.md) 
 
 
 

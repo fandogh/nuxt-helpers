@@ -2,7 +2,6 @@
 
 #### 💡 Usage
 
-- Add `cookie` & `js-cookie` to package.json
 - Add `auth` module
 
 ```js

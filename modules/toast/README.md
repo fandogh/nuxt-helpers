@@ -3,7 +3,6 @@ Easy toasts for your app using [mini-toastr](https://github.com/se-panfilov/mini
 
 #### 💡 Usage
 
-- Add `mini-toastr` to package.json
 - Add `toast` module
 
 Then you can define notification in your routes or components:

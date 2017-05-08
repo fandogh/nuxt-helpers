@@ -1,12 +1,13 @@
 const path = require('path');
 
-module.exports = {
-    extend(config) {
-        let fa = 'node_modules/font-awesome/css/font-awesome.css';
-        if (config.rootDir) {
-            fa = path.resolve(config.rootDir, fa);
-        }
-        config.css.push(fa);
-    },
+module.exports = (nuxt) => {
+    let fa = 'node_modules/font-awesome/css/font-awesome.css';
+    if (nuxt.rootDir) {
+        fa = path.resolve(nuxt.rootDir, fa);
+    }
+    nuxt.css.push(fa);
+};
+
+module.exports.meta = {
     vendor: ['font-awesome']
 };

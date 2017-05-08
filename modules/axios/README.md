@@ -11,7 +11,6 @@ So you can use **$get('profile')** instead of `(await Axios.get('http://server/a
 
 #### 💡 Usage
 
-- Add `axios` to project `package.json`
 - Add `axios` module
 
 ```js
